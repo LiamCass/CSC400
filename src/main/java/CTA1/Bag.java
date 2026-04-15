@@ -1,36 +1,5 @@
 // Designs a Java class called Bag that implements the bag data structure.
 package CTA1;
-
-/*
-
-Write a Java program that demonstrates the usage of the Bag class.
-Your program should perform the following operations:
-    Create an instance of the Bag class.
-    Add several elements to the bag, including duplicates.
-    Print the bag contents.
-    Test the contains method for a few elements.
-    Test the count method for a few elements.
-    Remove an element from the bag.
-    Print the bag contents again
-    Test the contains method for the removed element.
-    Test the count method for the removed element.
-Comment your code appropriately to explain the functionality of each method
-
-┌───────────┬─────────┬───────────┬────────────┬──────────┬──────────┐
-│ Operation │ HashMap │ ArrayList │ LinkedList │ Multiset │ TreeMap  │
-├───────────┼─────────┼───────────┼────────────┼──────────┼──────────┤
-│ add       │ O(1)    │ O(1)      │ O(1)       │ O(1)     │ O(log n) │
-│ contains  │ O(1)    │ O(n)      │ O(n)       │ O(1)     │ O(log n) │
-│ count     │ O(1)    │ O(n)      │ O(n)       │ O(1)     │ O(log n) │
-│ remove    │ O(1)    │ O(n)      │ O(n)       │ O(1)     │ O(log n) │
-└───────────┴─────────┴───────────┴────────────┴──────────┴──────────┘
-*/
-
-// In most scenarios, I'd prefer the following package
-// Google Guava multiset:
-//  https://github.com/google/guava/blob/master/guava/src/com/google/common/collect/Multiset.java
-//  https://github.com/google/guava/blob/master/guava/src/com/google/common/collect/Multisets.java
-
 import java.util.HashMap;
 import java.util.Map;
 
