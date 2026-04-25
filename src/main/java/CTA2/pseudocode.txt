@@ -1,0 +1,47 @@
+# PSEUDOCODE (based off python knowledge)
+Bag
+    __init__
+        Constructor. Initializes backend implementation details.
+        Possibly accepts initial elements via an iterable?
+        Either way, the most common implementation is a Map.
+        So, let's initialize a Map here.
+
+    __in__(item)
+        Implements a contains(item) function.
+        Bag.contains(item) ~ (item in Bag)
+        In an array implementation, you'd have to do a full array search.
+        In a map though, you can just look at the key through a hash function and see if present.
+
+    __getitem__(item)
+        Allows indexing. Bag[item] gives the multiplicity of said item.
+        Should likely be implemented through the default map behavior.
+        indexing for a class is not really supposed to be implemented in Java though.
+        A little odd, considering that C++ and python both do it.
+
+    __setitem__(item)
+        Allows setting, at least via python. Bag[item] = x sets multiplicity to x.
+        Also C++ and python specific.
+        Implemented via remove and/or add functions.
+
+    add(item)
+        Increments the multiplicity of item by one.
+        Just look at the hash function and increment that key.
+
+    __add__(item)
+        Overrides the addition method, and returns a new bag with said item. Bag + item
+        Basically merge, and luckily Java already has an inbuilt merge in their standard for a Map.
+
+    __sub__
+        Overrides the subtraction method. Equivalent to set subtraction, but on multisets.
+        You'd take the keys with values of one, and subtract like keys with the other.
+
+    __len__
+        The size() method. Returns the total number of all items in the bag. Equivalent to adding all multiplicities of contained items.
+        Look at each populated key and add it to a total.
+
+    distinct()
+        Returns a set representation of the current Bag. Or, in other equivalent terms returns a Bag with all multiplicity 1 elements.
+        Look at each populated key and create a new bag where each key has multiplicity one.
+
+The neat thing about all these is there's already a near-native implementation through Java's "HashMap" class.
+I might need to iterate through each key to get multiplicity data for some operations, however.
