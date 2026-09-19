@@ -1,47 +1,56 @@
-# PSEUDOCODE (based off python knowledge)
-Bag
-    __init__
-        Constructor. Initializes backend implementation details.
-        Possibly accepts initial elements via an iterable?
-        Either way, the most common implementation is a Map.
-        So, let's initialize a Map here.
+Modify the `Bag` class from the previous assignment to include the following additional methods:
+`int size()`: This method should return the total number of elements in the bag, including duplicates.
+ `void merge(Bag<T> otherBag)`: This method should merge the elements of `otherBag` into the current bag.
+ `Bag<T> distinct()`: This method should return a new bag that contains only the distinct elements from the current bag.
+Write a Java program that demonstrates the usage of the additional methods. Your program should perform the following operations:
+Create two instances of the `Bag` class.
+Add elements to each bag, including duplicates.
+Print the size of each bag using the `size` method.
+Merge the two bags together using the `merge` method.
+Print the merged bag contents.
+Create a new bag containing only the distinct elements using the `distinct` method.
+Print the distinct bag contents.
 
-    __in__(item)
-        Implements a contains(item) function.
-        Bag.contains(item) ~ (item in Bag)
-        In an array implementation, you'd have to do a full array search.
-        In a map though, you can just look at the key through a hash function and see if present.
+// Design a Java class called `Bag` that implements the bag data structure.
+class Bag
+    HashMap contents (e.g. Python's dict)
+    add(item):      contents.add(item)
+    remove(item):   contents[item] -= 1
+                    if not contents[item]: del item
+    contains(item): return (item in contents)
+    count(item):    return contents[item]
 
-    __getitem__(item)
-        Allows indexing. Bag[item] gives the multiplicity of said item.
-        Should likely be implemented through the default map behavior.
-        indexing for a class is not really supposed to be implemented in Java though.
-        A little odd, considering that C++ and python both do it.
+    // Modify the `Bag` class from the previous assignment to include the following additional methods
+    size(self):     return sum(self[i] for i in self)
+    merge(otherBag):for item in otherBag: self.add(item)
+    distinct():     return Bag(item for item in contents)
 
-    __setitem__(item)
-        Allows setting, at least via python. Bag[item] = x sets multiplicity to x.
-        Also C++ and python specific.
-        Implemented via remove and/or add functions.
+// Write a Java program that demonstrates the usage of the additional methods. Your program should perform the following operations:
+main
+    // Create two instances of the `Bag` class.
+    bag1, bag2 = {}
 
-    add(item)
-        Increments the multiplicity of item by one.
-        Just look at the hash function and increment that key.
+    // Add elements to each bag, including duplicates.
+    bag1.add(A)
+    bag1.add(A)
+    bag1.add(B)
 
-    __add__(item)
-        Overrides the addition method, and returns a new bag with said item. Bag + item
-        Basically merge, and luckily Java already has an inbuilt merge in their standard for a Map.
+    bag2.add(B)
+    bag2.add(B)
+    bag2.add(C)
 
-    __sub__
-        Overrides the subtraction method. Equivalent to set subtraction, but on multisets.
-        You'd take the keys with values of one, and subtract like keys with the other.
+    // Print the size of each bag using the `size` method.
+    bag1.size()
+    bag2.size()
 
-    __len__
-        The size() method. Returns the total number of all items in the bag. Equivalent to adding all multiplicities of contained items.
-        Look at each populated key and add it to a total.
+    // Merge the two bags together using the `merge` method.
+    bag1.merge(bag2)
 
-    distinct()
-        Returns a set representation of the current Bag. Or, in other equivalent terms returns a Bag with all multiplicity 1 elements.
-        Look at each populated key and create a new bag where each key has multiplicity one.
+    // Print the merged bag contents.
+    print(bag1)
 
-The neat thing about all these is there's already a near-native implementation through Java's "HashMap" class.
-I might need to iterate through each key to get multiplicity data for some operations, however.
+    // Create a new bag containing only the distinct elements using the `distinct` method.
+    bag3 = bag1.distinct()
+
+    // Print the distinct bag contents.
+    print(bag3)
