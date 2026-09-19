@@ -1,0 +1,77 @@
+Complete the following exercises. For each exercise, show your work and all the steps taken to determine the Big-Oh for each problem. Partial points cannot be awarded without showing work.
+
+Exercise 1)
+```
+  int sum = 0;                                              // assignment (constant time)
+  for (int counter = n; counter > 0; counter = counter - 2) // ½n multiplier
+        sum = sum + counter;                                // increment  (constant time)
+```
+  In most computers and programming languages, assignment and addition+assignment execute in constant time.
+  Thus, the runtime of this algorithm is T(n) = O(1) + O(½n) + O(1)
+  which reduces to O(½n), and further to O(n)
+
+Exercise 2)
+```
+  for (int pass = 1; pass <= n; pass++) {       // n multiplier
+    for(int index  = 0; index < n; index++) {   // n multiplier
+      for(int count = 1; count < 10; count++) { // 10 multiplier
+        . . .                                   // independent time 'k'.
+  }}}
+```
+  Algorithm time:   n * n * 10 * k = 10n²k
+  Big-O time:       O(n²k)
+
+Exercise 3)
+  Program A requires 1000 x n^2 operations and Program B requires 2^n operaitons.
+  For which values of n will Program A execute faster than Program B?
+
+  A executes faster than B while A requires fewer operations than B.
+  Thus, this problem is effectively...
+    Op(A)               < Op(B)           Problem statement
+    1000n²              < 2ⁿ              Substitution
+  Which we can use to calculate at which point B overtakes A
+    n=1  │  1000    > 2
+    n=2  │  4000    > 4
+    n=3  │  9000    > 8
+    n=4  │  16000   > 16
+    n=5  │  25000   > 32
+    n=6  │  36000   > 64
+    n=7  │  49000   > 128
+    n=8  │  64000   > 256
+    n=9  │  81000   > 512
+    n=10 │  100000  > 1024
+    n=11 │  121000  > 2048
+    n=12 │  144000  > 4096
+    n=13 │  169000  > 8192
+    n=14 │  196000  > 16384
+    n=15 │  225000  > 32768
+    n=16 │  256000  > 65536
+    n=17 │  289000  > 131072
+    n=18 │  324000  > 262144
+    n=19 │  361000  < 524288
+  And, as can be seen above, is at n=19.
+
+  Thus, Program A will execute faster than Program B for n values less than 19.
+
+
+
+Exercise 4)
+  Consider an array of length "n" containing unique integers in random order and in the range 1 to n + 1.
+  For example an array of length 5 would contain 5 unique integers selected randomly from the integers 1 through 6.
+  Thus the array might contain 3 6 5 1 4.
+
+  Of the integers 1 through 6, notice that 2 was not selected and is not in the array.
+  Write Java code that finds the integer that does not appear in such an array. Explain the Big-Oh in your code.
+```
+    int xor = switch (array.length % 4) { // O(1) modulus + O(1) switch.
+        case 0 -> 1;                      // XOR  when n % 4 == 0
+        case 1 -> array.length + 2;       // XOR of 1..(n+1) when n % 4 == 1
+        case 2 -> 0;                      // XOR of 1..(n+1) when n % 4 == 2
+        default -> array.length + 1;      // XOR of 1..(n+1) when n % 4 == 3
+    };
+    for (int num : array) xor ^= num;     // O(n) for loop * O(1) xOR operator
+    return xor;                           // O(1) stack teardown and return.
+```
+  Time is as follows.
+  O(1) + O(1) + O(n) * O(1) + O(1)
+  after reduction, time is O(n)
