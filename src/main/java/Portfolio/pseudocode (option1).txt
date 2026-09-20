@@ -1,0 +1,32 @@
+Write a program
+// program.java
+
+// that creates a Person class
+class Person
+    // that contains string that represent
+    String first name
+    String last name
+    Integer age
+
+// You will need to create a Queue class
+class Queue
+    // that will store each person
+    Container Person
+
+    // and can sort the queue based on last name or age.
+    sortLastName(); // quick sort
+    sortAge();      // quick sort
+
+// Prompt the user of the program to
+print("add five people to the queue")
+
+i goes from 1 to 5
+    person = input("person {i}:")
+    Queue.add(person)
+
+// Your program should provide the contents of the queue
+print(Queue)
+
+// then sort the queue using the quick sort in two ways:
+Queue.sortLastName(descending) // quick sort
+Queue.sortAge(descending)      // quick sort
