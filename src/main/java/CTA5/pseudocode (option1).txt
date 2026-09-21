@@ -1,0 +1,37 @@
+Implement the radix sort algorithm in Java.
+Analyze your algorithm in Big-Oh notation and provide the appropriate analysis.
+
+Analyze the algorithm by documenting the steps taken when radix sort sorts the following array
+[783, 99, 472, 182, 264, 543, 356, 295, 692, 491, 94]
+
+Analyze the Big-O of your algorithm.
+
+PSEUDOCODE
+// Integers have 4 bytes
+// Each byte has 256 possible values
+bucket = [4][256]
+
+// You begin by placing each item into the buckets
+for integer in input
+    bump bucket[1] count of integer (byte 4) value by 1
+    bump bucket[2] count of integer (byte 3) value by 1
+    bump bucket[3] count of integer (byte 2) value by 1
+    bump bucket[4] count of integer (byte 1) value by 1 (ignore sign bit)
+// The above is 4 operations per item in the input, or O(4n)
+
+// Then you do a prefix sum
+// this tells you (depending on the number of other elements)
+// what the final position of said byte value will be in.
+for value in byte
+    bucket byte 1 sum current plus previous seen vals in byte 1
+    bucket byte 2 (sum all previous)
+    bucket byte 3 (sum all previous)
+    bucket byte 4 (sum all previous)
+// The above is 4 operation per possible byte, or O(4*256)
+
+// Then you actually place them correctly, using your information in a scatter plot
+O(n) for each item, reconstruct in correct position.
+
+Total big-O time is O(5n) + 2048, or after reduced, O(n) time
+Total big-O space is 2048 bytes, or after reduced, constant time
+You can also see the trace and big-O analysis in the program output
