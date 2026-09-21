@@ -1,0 +1,74 @@
+Implement a postfix calculator in Java that evaluates arithmetic expressions in postfix notation.
+The program should support the basic arithmetic operations:
+    addition        (+)
+    subtraction     (-)
+    multiplication  (*)
+    division        (/)
+    modulus         (%)
+Additionally, the program should handle operands and display the final result.
+
+The program should:
+- handle single-digit operands
+- handle multi-digit operands
+- handle valid postfix expressions.
+- Display an error message for invalid expressions.
+- Display the result for valid expressions.
+- read a text file containing several expressions
+
+Example:
+public class Option1 {
+    public int evaluatePostfix(String postfixExpression) {
+        // Your implementation here
+        // ...
+        return 0; // Placeholder
+    }
+
+    public static void main(String[] args) {
+        PostfixCalculator calculator = new PostfixCalculator();
+
+        // Postfix example 1: Valid Expression
+        String postfix1 = "4 2 * 3 +";
+        System.out.println("Postfix result 1: " + calculator.evaluatePostfix(postfix1));
+        // Should display `Postfix result 1: 11`
+
+        // Postfix example 2: Valid Expression
+        String postfix2 = "5 3 + 7 *";
+        System.out.println("Postfix result 2: " + calculator.evaluatePostfix(postfix2));
+        // Should display `Postfix result 2: 56`
+
+        // Postfix example 3: Invalid Expression
+        String postfix3 = "4 2 * +"; // Missing operand
+        System.out.println("Postfix result 3: " + calculator.evaluatePostfix(postfix3));
+        // Should display `Error: Invalid postfix expression`
+    }
+}
+
+PSEUDOCODE
+// Delimiter is a space
+tokens = expression.split(" ")
+
+// turn tokens into a stack. Top is tokens[0]
+stack(tokens)
+
+int arg1, arg2;
+str op;
+
+try:
+    args = []
+    while stack:
+        top = stack.pop()
+        if top is numeric: args.push( int(top) )
+        else:
+            b = args.pop()
+            a = args.pop()
+            switch (top) {
+                case "+": args.push(a + b)
+                case "-": args.push(a - b)
+                case "*": args.push(a * b)
+                case "/": args.push(a / b)
+                case "%": args.push(a % b)
+                default: raise Exception
+            }
+    if args.size != 1: raise Exception
+    return args.pop()
+except: raise Exception("Error: Invalid postfix expression")
